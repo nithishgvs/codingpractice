@@ -2,7 +2,7 @@ package main.arrayshashing;
 
 import org.junit.Test;
 
-public class ReplaceElementswithGreatestElementonRightSide_1299 {
+public class ReplaceElementsWithGreatestElementOnRightSide_1299 {
 
 
     public int[] replaceElements(int[] arr) {
