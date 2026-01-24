@@ -63,22 +63,18 @@ public class OpenTheLock_752 {
         char[] chars = current.toCharArray();
 
         for (int i = 0; i < 4; i++) {
-
             int digit = (chars[i] - '0') % 10;
-
             //Up increment
             chars[i] = (char) ('0' + (digit + 1) % 10);
             neighbours.add(new String(chars));
-            //
+            //down increment
             chars[i] = (char) ('0' + (digit - 1 + 10) % 10);
             neighbours.add(new String(chars));
 
             //By now number is changed in the char array so as we have the digit we revert back to the current number and move on to the next character
             chars[i] = (char) ('0' + digit);
         }
-
         return neighbours;
-
     }
 
     @Test
