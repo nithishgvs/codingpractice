@@ -37,7 +37,6 @@ public class MostFrequentSubtreeSum_508 {
         maxFreq = Math.max(maxFreq, count);
         frequency.put(rootSum, count);
         return rootSum;
-
     }
 
     public static void main(String[] args) {
