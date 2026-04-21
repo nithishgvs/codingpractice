@@ -12,7 +12,7 @@ public class GroupAnagrams_49 {
             char[] sArr = s.toCharArray();
             Arrays.sort(sArr);
             String key = String.valueOf(sArr);
-            stringListMap.computeIfAbsent(key, _ -> new ArrayList<>());
+            stringListMap.computeIfAbsent(key, sortedKey -> new ArrayList<>());
             stringListMap.get(key).add(s);
         }
 

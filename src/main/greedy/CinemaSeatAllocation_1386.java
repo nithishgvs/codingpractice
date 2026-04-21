@@ -16,7 +16,7 @@ public class CinemaSeatAllocation_1386 {
         for (int[] reserved : reservedSeats) {
             int row = reserved[0];
             int seat = reserved[1];
-            rowsToSeats.computeIfAbsent(row, _ -> new HashSet<>()).add(seat);
+            rowsToSeats.computeIfAbsent(row, missingRow -> new HashSet<>()).add(seat);
         }
 
         //For empty rows we can add 2 sets each this is important to avoid TLE

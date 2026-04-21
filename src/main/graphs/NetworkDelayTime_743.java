@@ -16,7 +16,7 @@ public class NetworkDelayTime_743 {
         Map<Integer, List<int[]>> adjacencyList = new HashMap<>();
 
         for (int[] time : times) {
-            adjacencyList.computeIfAbsent(time[0], _ -> new ArrayList<>()).add(new int[]{time[1], time[2]});
+            adjacencyList.computeIfAbsent(time[0], source -> new ArrayList<>()).add(new int[]{time[1], time[2]});
         }
 
         PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(v -> v[1]));

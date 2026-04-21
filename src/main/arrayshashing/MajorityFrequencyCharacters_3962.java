@@ -17,7 +17,7 @@ public class MajorityFrequencyCharacters_3962 {
         //Frequency vs list of chars
         Map<Integer, List<Character>> freqMap = new HashMap<>();
         for (Map.Entry<Character, Integer> entry : charFreq.entrySet()) {
-            freqMap.computeIfAbsent(entry.getValue(), _ -> new ArrayList<>()).add(entry.getKey());
+            freqMap.computeIfAbsent(entry.getValue(), frequency -> new ArrayList<>()).add(entry.getKey());
         }
 
 
