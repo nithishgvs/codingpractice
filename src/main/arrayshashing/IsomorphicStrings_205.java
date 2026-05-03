@@ -2,27 +2,30 @@ package main.arrayshashing;
 
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class IsomorphicStrings_205 {
 
     public boolean isIsomorphic(String s, String t) {
-        return helper(s).equals(helper(t));
-    }
-
-    private String helper(String s) {
-        Map<Character, Integer> map = new HashMap<>();
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (int i = 0; i < s.length(); i++) {
-            if (!map.containsKey(s.charAt(i))) {
-                map.put(s.charAt(i), i);
-            }
-            stringBuilder.append(map.get(s.charAt(i))).append("*");
+        if (s.length() != t.length()) {
+            return false;
         }
 
-        return stringBuilder.toString();
+        int[] sLastSeen = new int[256];
+        int[] tLastSeen = new int[256];
+
+        for (int i = 0; i < s.length(); i++) {
+            char source = s.charAt(i);
+            char target = t.charAt(i);
+
+            if (sLastSeen[source] != tLastSeen[target]) {
+                return false;
+            }
+
+            // Store i + 1 so that 0 can remain the sentinel for "not seen yet".
+            sLastSeen[source] = i + 1;
+            tLastSeen[target] = i + 1;
+        }
+
+        return true;
     }
 
     @Test

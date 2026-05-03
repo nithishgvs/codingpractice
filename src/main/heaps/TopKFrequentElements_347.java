@@ -2,6 +2,7 @@ package main.heaps;
 
 import org.junit.Test;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -9,21 +10,28 @@ import java.util.PriorityQueue;
 public class TopKFrequentElements_347 {
 
     public int[] topKFrequent(int[] nums, int k) {
-        int[] result = new int[k];
-        Map<Integer, Integer> countMap = new HashMap<>();
+        Map<Integer, Integer> freqMap = new HashMap<>();
+
         for (int num : nums) {
-            countMap.computeIfAbsent(num, key -> 0);
-            countMap.put(num, countMap.get(num) + 1);
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap =
+                new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
 
-        maxHeap.addAll(countMap.entrySet());
+        for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
+            minHeap.offer(entry);
 
-        for (int i = 0; i < k; i++) {
-            if (!maxHeap.isEmpty()) {
-                result[i] = maxHeap.poll().getKey();
+            if (minHeap.size() > k) {
+                minHeap.poll();
             }
+        }
+
+        int[] result = new int[k];
+        int index = k - 1;
+
+        while (!minHeap.isEmpty()) {
+            result[index--] = minHeap.poll().getKey();
         }
 
         return result;
